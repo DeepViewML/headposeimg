@@ -1,0 +1,67 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_debug",
+            "command": "make",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": {
+                "base": "$gcc"
+            },
+            "options": {
+                "env": {
+                    "CFLAGS": "-g",
+                    "CXXFLAGS": "-g"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build_release",
+            "command": "make",
+            "type": "shell",
+            "args": [],
+            "problemMatcher": {
+                "base": "$gcc"
+            },
+            "options": {
+                "env": {
+                    "CFLAGS": ""
+                }
+            },
+            "group": "build"
+        },
+        {
+            "label": "clean",
+            "command": "make",
+            "type": "shell",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": {
+                "base": "$gcc"
+            },
+            "group": "build"
+        },
+        {
+            "detail": "deploy application to work folder",
+            "label": "deploy",
+            "command": "make",
+            "args": [
+                "WORKDIR=${command:torizon.ccpp.getTargetFolder}",
+                "install"
+            ],
+            "type": "shell",
+            "group": "none"
+        }
+    ],
+    "options": {
+        "env": {
+            "TORIZON_PROP_ARG": "ARG SSHUSERNAME=#%application.username%#\n"
+        }
+    }
+}

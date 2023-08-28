@@ -1,0 +1,88 @@
+devices:
+    common: []
+    debug: []
+    release: []
+dockercomposefile:
+    common: ''
+    debug: ''
+    release: ''
+extraparms:
+    common: {}
+    debug: {}
+    release: {}
+id: 7be98ced-f527-411c-8032-ff1022273bfb
+images:
+    debug: ''
+    release: ''
+imagetags:
+    debug: 
+    release: 
+modificationdate: 
+networks:
+    common: []
+    debug: []
+    release: []
+otapackagename: ''
+otapackageversion: 1.0.0
+platformid: arm64v8-debian-no-ssh_bullseye
+ports:
+    common: {}
+    debug: {}
+    release: {}
+privatekey: 
+props:
+    common:
+        appargs: '/model.rtm /image.png '
+        appname: headposeimg
+        arg: ''
+        buildcommands: ''
+        buildfiles: COPY test_image.png /image.png
+        command: ''
+        devpackages: libvaal:#%platform.debian-arch%# python
+        env: ''
+        exename: headposeimg
+        expose: ''
+        extrapackages: libnng-dev libvaal-dev libvideostream-dev python3 deepview-rt-python
+            vaal-python libgomp1 libdeepview-rt libgstreamer1.0-dev  python3
+        language: c-cpp-nossh
+        preinstallcommands: RUN apt-get update && apt-get -q -y install curl gpg &&
+            curl https://deepviewml.com/apt/key.pub | gpg --dearmor -o /usr/share/keyrings/deepviewml.gpg
+            && echo 'deb [signed-by=/usr/share/keyrings/deepviewml.gpg] https://deepviewml.com/apt
+            stable main' > /etc/apt/sources.list.d/deepviewml.list
+        sdkpackages: ''
+        sdkpostinstallcommands: ''
+        sdkpreinstallcommands: 'RUN apt-get update && apt-get -q -y install curl gpg
+            && curl https://deepviewml.com/apt/key.pub | gpg --dearmor -o /usr/share/keyrings/deepviewml.gpg
+            && echo ''deb [signed-by=/usr/share/keyrings/deepviewml.gpg] https://deepviewml.com/apt
+            stable main'' > /etc/apt/sources.list.d/deepviewml.list '
+        targetcommands: ''
+        targetfiles: ADD mpk-coco-people.rtm /model.rtm
+    debug:
+        arg: 'ARG SSHUSERNAME=#%application.username%#
+
+            '
+    release: {}
+publickey: 
+sdkimages:
+    debug: sha256:63a930f86f1d7b8b3963c999763837130d0aa160d8fb2e94c83ee1260b0311bc
+    release: ''
+sdkimagetags:
+    debug: 
+    release: 
+sdksshaddress:
+    debug: null
+    release: null
+shutdownscript:
+    common: ''
+    debug: ''
+    release: ''
+startupscript:
+    common: ''
+    debug: ''
+    release: ''
+username: root
+volumes:
+    common: {}
+    debug:
+        /home/torizon/headposeimg: /headposeimg,rw
+    release: {}
